@@ -36,6 +36,7 @@ NSString *const fragmentShaderString = SHADER_STRING
 @interface LYRGLView ()
 {
     GLuint _renderBuffer;
+    GLuint _framebuffer;
     //着色器程序
     GLuint _glprogram;
 }
@@ -43,7 +44,7 @@ NSString *const fragmentShaderString = SHADER_STRING
 @property(nonatomic,strong)EAGLContext*context;
 @end
 @implementation LYRGLView
-
+#pragma mark - life cycle
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super initWithCoder:aDecoder]) {
@@ -61,6 +62,31 @@ NSString *const fragmentShaderString = SHADER_STRING
 {
     return [CAEAGLLayer class];
 }
+
+- (void)dealloc
+{
+    if (_framebuffer) {
+        glDeleteFramebuffers(1, &_framebuffer);
+        _framebuffer = 0;
+    }
+    
+    if (_renderBuffer) {
+        glDeleteRenderbuffers(1, &_renderBuffer);
+        _renderBuffer = 0;
+    }
+    
+    if (_glprogram) {
+        glDeleteProgram(_glprogram);
+        _glprogram = 0;
+    }
+    
+    if ([EAGLContext currentContext] == _context) {
+        [EAGLContext setCurrentContext:nil];
+    }
+    
+    _context = nil;
+}
+#pragma mark - private methods
 -(void)prepareLayer
 {
     self.eaglLayer = (CAEAGLLayer*)self.layer;
@@ -81,9 +107,8 @@ NSString *const fragmentShaderString = SHADER_STRING
 
 -(void)prepareFrameBuffer
 {
-    GLuint framebuffer;
-    glGenFramebuffers(1, &framebuffer);
-    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+    glGenFramebuffers(1, &_framebuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, _framebuffer);
     //附加之前的_renderBuffer
     //GL_COLOR_ATTACHMENT0指定第一个颜色缓冲区附着点
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,

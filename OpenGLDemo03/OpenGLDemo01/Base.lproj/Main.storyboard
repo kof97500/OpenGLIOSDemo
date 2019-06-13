@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fj8-kJ-96J" customClass="LYRYUVView">
+                                <rect key="frame" x="47" y="528" width="320" height="240"/>
+                                <color key="backgroundColor" red="1" green="0.58817497860000001" blue="0.273814153" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="4xp-KU-52s"/>
+                                    <constraint firstAttribute="width" constant="320" id="DUY-0F-Nyr"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c7z-yr-p0P">
+                                <rect key="frame" x="47" y="271" width="320" height="240"/>
+                                <color key="backgroundColor" red="0.56547127962974586" green="1" blue="0.56185128717905908" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="0U2-v7-HAM"/>
+                                    <constraint firstAttribute="height" constant="240" id="8vK-8i-Y1O"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="240" id="Z2g-gB-ztp"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="p1h-nA-rAO"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="fj8-kJ-96J" firstAttribute="top" secondItem="c7z-yr-p0P" secondAttribute="bottom" constant="17" id="9XT-dP-wbF"/>
+                            <constraint firstItem="c7z-yr-p0P" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XMZ-tJ-5Oq"/>
+                            <constraint firstItem="fj8-kJ-96J" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="g2T-x9-Nnx"/>
+                            <constraint firstItem="fj8-kJ-96J" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="200" id="uwS-GL-eac"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="previewView" destination="c7z-yr-p0P" id="CQm-VY-F0y"/>
+                        <outlet property="renderView" destination="fj8-kJ-96J" id="HS0-UZ-fuo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>

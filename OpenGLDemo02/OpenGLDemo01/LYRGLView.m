@@ -184,8 +184,9 @@ NSString *const fragmentShaderString = SHADER_STRING
     void *imageData = malloc(width * height * 4);
     CGContextRef context = CGBitmapContextCreate(imageData, width, height, 8, width * 4, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
 
+    CGContextTranslateCTM(context, 0, height);
+    CGContextScaleCTM(context, 1.0, -1.0);
     CGColorSpaceRelease(colorSpace);
-    CGContextClearRect(context, rect);
     CGContextDrawImage(context, rect, cgImageRef);
     
     
@@ -210,10 +211,10 @@ NSString *const fragmentShaderString = SHADER_STRING
     
     float vertices[] = {
         // positions           // texture coords
-        0.5f,  0.5f, 0.0f,    1.0f, 0.0f, // top right
-        0.5f, -0.5f, 0.0f,    1.0f, 1.0f, // bottom right
-        -0.5f, -0.5f, 0.0f,   0.0f, 1.0f, // bottom left
-        -0.5f,  0.5f, 0.0f,   0.0f, 0.0f  // top left
+        0.5f,  0.5f, 0.0f,    1.0f, 1.0f, // top right
+        0.5f, -0.5f, 0.0f,    1.0f, 0.0f, // bottom right
+        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, // bottom left
+        -0.5f,  0.5f, 0.0f,   0.0f, 1.0f  // top left
     };
     
     
